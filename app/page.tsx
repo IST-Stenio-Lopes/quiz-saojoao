@@ -8,10 +8,11 @@ import ScoreScreen from "@/components/score-screen"
 import { usePreventContextMenu } from "@/hooks/use-prevent-context-menu"
 import { quizData } from "@/db/quizData"
 import CuriosidadesScreen from "@/components/curiosidades-screen"
+import OnboardingScreen from "@/components/onboarding"
 
 
 export default function Home() {
-  const [gameState, setGameState] = useState<"start" | "map" | "quiz" | "score" | "curiosidades">("start")
+  const [gameState, setGameState] = useState<"start" | "map" | "quiz" | "score" | "curiosidades" | "onboarding">("start")
   const [currentStop, setCurrentStop] = useState(0)
   const [unlockedStops, setUnlockedStops] = useState([0])
   const [correctAnswers, setCorrectAnswers] = useState(0)
@@ -57,6 +58,10 @@ export default function Home() {
     setGameState("curiosidades")
   }
 
+  const handleOnboarding = () => {
+    setGameState("onboarding")
+  }
+
   const handleRestart = () => {
     setCurrentStop(0)
     setUnlockedStops([0])
@@ -86,7 +91,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-gray-100">
       <div className="w-full max-w-[1080px] h-screen max-h-[1920px] mx-auto relative bg-white shadow-lg overflow-hidden">
-        {gameState === "start" && <StartScreen onStart={handleStart} />}
+        {gameState === "start" && <StartScreen onStart={handleOnboarding} />}
+
+        {gameState === "onboarding" && <OnboardingScreen onStart={handleStart} />}
 
         {gameState === "map" && <MapScreen unlockedStops={unlockedStops} onSelectStop={handleSelectStop} />}
 

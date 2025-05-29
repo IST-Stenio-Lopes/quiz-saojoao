@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { MapPin, Lock, CheckCircle } from "lucide-react"
 import Image from "next/image"
+import { motion } from 'framer-motion'
 
 interface MapScreenProps {
   unlockedStops: number[]
@@ -18,7 +19,13 @@ export default function MapScreen({ unlockedStops, onSelectStop }: MapScreenProp
   ]
 
   return (
-    <div className="relative h-full">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }
+      }
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative h-full">
       <div className="flex flex-col items-center justify-center h-full w-full bg-[url('/mapBG.png')] bg-cover text-white p-6">
         {stops.map((stop, index) => {
           const isUnlocked = unlockedStops.includes(index)
@@ -59,6 +66,6 @@ export default function MapScreen({ unlockedStops, onSelectStop }: MapScreenProp
               : `${unlockedStops.length} de 4 paradas desbloqueadas`}
         </p>
       </div>
-    </div>
+    </motion.div>
   )
 }
