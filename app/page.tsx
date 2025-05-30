@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import StartScreen from "@/components/start-screen"
 import MapScreen from "@/components/map-screen"
 import QuizScreen from "@/components/quiz-screen"
@@ -17,11 +17,31 @@ export default function Home() {
   const [unlockedStops, setUnlockedStops] = useState([0])
   const [correctAnswers, setCorrectAnswers] = useState(0)
   const [totalAnswered, setTotalAnswered] = useState(0)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   usePreventContextMenu()
 
+  useEffect(() => {
+    audioRef.current = new Audio("/sound/background-music.mp3")
+    audioRef.current.loop = true
+    audioRef.current.volume = 0.4
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [])
+
+
   const handleStart = () => {
     setGameState("map")
+    if (audioRef.current) {
+      audioRef.current.play().catch((err) => {
+        console.warn("Não foi possível tocar o áudio:", err)
+      })
+    }
   }
 
   const handleSelectStop = (stopIndex: number) => {

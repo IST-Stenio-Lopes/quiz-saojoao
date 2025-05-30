@@ -176,7 +176,7 @@ export default function QuizScreen({
 
         </div>
 
-        <div className="absolute inset-x-0 -bottom-28 bg-no-repeat bg-center bg-contain opacity-10 pointer-events-none z-0">
+        <div className="absolute inset-x-0 -bottom-28 bg-no-repeat bg-center bg-contain opacity-60 pointer-events-none z-0">
           <Image alt="Parada" src={`${stopData.logo}.svg`} width={1200} height={440} className="object-contain" />
         </div>
 
@@ -194,7 +194,7 @@ export default function QuizScreen({
           ) : (
             <Image src="skip.svg" alt="button" width={60} height={60} />
           )}
-
+          p
         </div>
       </div>
 
