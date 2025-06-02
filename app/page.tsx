@@ -24,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     audioRef.current = new Audio("/sound/background-music.mp3")
     audioRef.current.loop = true
-    audioRef.current.volume = 0.4
+    audioRef.current.volume = 1
 
     return () => {
       if (audioRef.current) {
