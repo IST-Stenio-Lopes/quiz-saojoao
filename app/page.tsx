@@ -110,13 +110,13 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-gray-100">
-      <div className="w-full max-w-[1080px] h-screen max-h-[1920px] mx-auto relative bg-white shadow-lg overflow-hidden">
+      {/* Container responsivo - TV em landscape ou mobile em portrait */}
+      <div className="w-full h-screen mx-auto relative bg-white shadow-lg overflow-hidden
+                      max-w-[1080px] max-h-[1920px] 
+                      md:max-w-none md:max-h-none">
         {gameState === "start" && <StartScreen onStart={handleOnboarding} />}
-
         {gameState === "onboarding" && <OnboardingScreen onStart={handleStart} />}
-
         {gameState === "map" && <MapScreen unlockedStops={unlockedStops} onSelectStop={handleSelectStop} />}
-
         {gameState === "quiz" && (
           <QuizScreen
             stopData={quizData[currentStop]}
@@ -127,7 +127,6 @@ export default function Home() {
             onQuit={handleQuit}
           />
         )}
-
         {gameState === "score" && (
           <ScoreScreen
             correctAnswers={correctAnswers}
@@ -137,15 +136,14 @@ export default function Home() {
             onCuriosity={handleCuriosity}
           />
         )}
-
         {gameState === "curiosidades" && (
-          <CuriosidadesScreen
-            comeBack={handleQuit}
-          />
+          <CuriosidadesScreen comeBack={handleQuit} />
         )}
       </div>
     </main>
   )
+
+
 }
 
 
