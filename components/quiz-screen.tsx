@@ -187,14 +187,11 @@ export default function QuizScreen({
             <img src="/close.svg" alt="Desitir" className="w-6" />
             DESISTIR
           </Button>
-
-
           {selectedOption !== null ? (
             <button onClick={handleNext}><Image src="/skip_active.svg" alt="active button" width={60} height={60} /></button>
           ) : (
             <Image src="skip.svg" alt="button" width={60} height={60} />
           )}
-          p
         </div>
       </div>
 
