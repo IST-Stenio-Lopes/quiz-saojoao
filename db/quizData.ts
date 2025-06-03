@@ -44,7 +44,7 @@ export const quizData = [
           "Entrei em trabalho de parto no meio de um show.",
           "Estava numa festa com Gonzaga e Dominguinhos quando minha bolsa estourou.",
           "Viajei às pressas para o Rio de Janeiro, mas Luã acabou nascendo dentro do avião.",
-          "Fiquei na casa da irmã, após um show, e o filho nasceu em casa.",
+          "Fiquei em casa, após um show, onde meu filho nasceu.",
         ],
         images: ["children_1", "children_2", "children_3", "children_4"],
         correctAnswer: 1,
@@ -53,10 +53,10 @@ export const quizData = [
         question:
           "Em 2018, recebi uma homenagem em Campina Grande pela música nordestina. Qual foi?",
         options: [
-          "Foi homenageada no centenário de Luiz Gonzaga com um show especial.",
-          "Foi a grande homenageada dos 10 anos do prêmio Troféu Gonzagão",
-          "Foi nomeada Embaixadora Cultural do São João da Paraíba.",
-          "Teve um palco com seu nome n’O Maior São João do Mundo.",
+          "Fui homenageada no centenário de Luiz Gonzaga com um show especial.",
+          "Fui a grande homenageada dos 10 anos do prêmio Troféu Gonzagão",
+          "Fui nomeada Embaixadora Cultural do São João da Paraíba.",
+          "Tive um palco com meu nome n’O Maior São João do Mundo.",
         ],
         correctAnswer: 1,
       },
@@ -89,7 +89,7 @@ export const quizData = [
         options: [
           "Portugal, durante um festival de música",
           "Argentina, em um intercâmbio cultural universitário",
-          "África, em 1968, marcando sua estreia internacional",
+          "África, em 1968, marcando minha estreia internacional",
           "França, em uma turnê com músicos brasileiros",
         ],
         correctAnswer: 2,
