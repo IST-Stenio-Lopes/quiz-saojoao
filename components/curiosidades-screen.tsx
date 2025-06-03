@@ -53,13 +53,13 @@ export default function CuriosidadesScreen({ comeBack }: ScoreScreenProps) {
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full bg-[url('/bg.png')] bg-cover bg-center text-white p-6">
-      <div className="flex flex-col items-center gap-9">
+      <div className="flex flex-col items-center gap-4">
 
         {curiosidades.map((curi) => (
           <div
             key={curi.id}
             onClick={() => toggleFlip(curi.id)}
-            className="w-[450px] h-[450px] perspective-1000 cursor-pointer"
+            className="w-[180px] h-[180px] perspective-1000 cursor-pointer"
           >
             <div
               className={cn(
@@ -78,14 +78,14 @@ export default function CuriosidadesScreen({ comeBack }: ScoreScreenProps) {
 
 
               <div className="absolute w-full h-full backface-hidden bg-zinc-200 border-[3px] border-b-[6px] border-zinc-300 rounded-lg text-center p-4 transform rotate-y-180 flex flex-col items-center justify-center">
-                <h1 className="text-2xl font-bold mb-2 text-zinc-800">{curi.title}</h1>
-                <p className="text-2xl text-zinc-800">{curi.description}</p>
+                <h1 className="text-[14px] font-bold mb-2 text-zinc-800">{curi.title}</h1>
+                <p className="text-[12px] text-zinc-800">{curi.description}</p>
               </div>
             </div>
           </div>
         ))}
 
-        <Button variant="outline" onClick={comeBack} className="rounded-full font-heading text-zinc-50 border-b-[3px] border-zinc-300 text-2xl bg-[#008AD1] p-6
+        <Button variant="outline" onClick={comeBack} className="rounded-full font-heading text-zinc-50 border-b-[3px] border-zinc-300 text-lg bg-[#008AD1] p-6
           ">
           <img src="/ArrowLeft.svg" alt="Voltar para página inicial" />
           Voltar

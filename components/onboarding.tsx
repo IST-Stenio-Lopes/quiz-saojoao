@@ -40,7 +40,7 @@ export default function OnboardingScreen({ onStart }: OnboardingProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="absolute top-[25%] left-[8%] right-[8%] text-lg sm:text-xl md:text-2xl lg:text-[38px] font-heading z-10 text-center px-2"
+            className="absolute top-[25%] left-[10%] right-[10%] text-[clamp(1rem,2vw,1.5rem)] leading-tight font-heading z-10 text-start px-2 break-words max-w-full"
           >
             {displayText}
           </motion.p>

@@ -79,58 +79,59 @@ export default function QuizScreen({
   }
 
   return (
-    <div className="relative flex flex-col h-full w-full"
-      style={backgroundStyle}>
+    <div className="relative flex flex-col min-h-screen w-full bg-cover bg-center bg-no-repeat" style={backgroundStyle}>
       {/* Header */}
-      <header className="flex justify-between items-center p-16 text-white">
+      <header className="flex justify-between items-center px-6 py-4 sm:px-10 md:px-16 text-white">
+
         <div className="flex items-center">
-          <Image src="/logoHeader.png" alt="Logo" width={180} height={180} className="mr-2" />
+          <Image src="/logoHeader.png" alt="Logo" width={80} height={80} className="mr-2" />
         </div>
         <div className={`flex items-center border rounded-md bg-zinc-200 ${correctAnswers ? "border-green-500" : "border-zinc-400"} border-2 py-2 gap-2 px-6 w-20"`}>
           <Check className={`${correctAnswers ? "text-green-500" : "text-zinc-400"}`} />
-          <span className={`font-bold text-3xl ${correctAnswers ? "text-green-500" : "text-zinc-400"}`}>{correctAnswers}</span>
+          <span className={`font-bold text-lg ${correctAnswers ? "text-green-500" : "text-zinc-400"}`}>{correctAnswers}</span>
         </div>
       </header>
 
       {/* Content */}
-      <div className="flex-1 p-16 flex flex-col">
-        <div className="mb-8">
+      <div className="flex-1 p-2 flex flex-col">
+        <div className="mb-4">
 
-          <div className="px-16">
+          <div className="px-8">
 
-            <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">{preventWidows(currentQuestion.question)}</h2>
+            <h2 className="text-lg sm:text-3xl md:text-4xl font-bold text-gray-800 mb-6 sm:mb-10 text-center">
+              {currentQuestion.question}</h2>
           </div>
 
 
 
           <AnimatePresence mode="wait">
-            {currentQuestion.imageQuestion && (
+            {/* {currentQuestion.imageQuestion && (
               <AnimatePresence mode="wait">
                 <motion.div key={currentQuestionIndex}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.4 }}>
-                  <img src={`/images/${currentQuestion.imageQuestion}.png`} alt="Imagem da questão" className="mb-12" />
+                  <img src={`/images/${currentQuestion.imageQuestion}.png`} alt="Imagem da questão" className="mb-6 w-40 h-auto object-contain mx-auto" />
                 </motion.div>
               </AnimatePresence>
-            )}
+            )} */}
             <motion.div
               key={currentQuestionIndex}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
               {currentQuestion.options.map((option, index) => (
                 <motion.button
                   key={index}
                   onClick={() => handleSelectOption(index)}
                   disabled={selectedOption !== null}
-                  className={`flex-col bg-zinc-200 border-b-[6px] ${currentQuestion.imageQuestion ? "p-10" : "p-20"}
-           rounded-lg border-[3px] flex items-center justify-center min-h-[100px] text-center font-bold
-          transition-colors duration-200 max-h-[280px] z-10
+                  className={`flex-col bg-zinc-200 border-b-[6px] min-h-[80px] p-2 sm:p-10 md:p-20
+  rounded-lg border-[3px] flex items-center justify-center text-center font-bold
+  transition-colors duration-200 z-10
           ${selectedOption === null
                       ? "border-gray-300"
                       : selectedOption === index
@@ -147,24 +148,24 @@ export default function QuizScreen({
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <div className="flex flex-col items-center">
-                    {currentQuestion.images && currentQuestion.images[index] && (
+                    {/* {currentQuestion.images && currentQuestion.images[index] && (
                       <img
                         src={`/images/${currentQuestion.images[index]}.png`}
                         alt={`Imagem da opção ${index + 1}`}
-                        className="flex-1"
+                        className="w-10 sm:w-32 md:w-40 h-auto"
                       />
-                    )}
-                    <div className="flex flex-row gap-8 items-center">
+                    )} */}
+                    <div className="flex flex-row gap-4 items-center">
                       {currentQuestion.imagesInline && currentQuestion.imagesInline[index] && (
                         <img
                           src={`/images/${currentQuestion.imagesInline[index]}.png`}
                           alt={`Imagem da opção ${index + 1}`}
-                          className="flex-1"
+                          className="w-10 sm:w-32 md:w-40 h-auto"
                         />
                       )}
 
-                      <span className={`${currentQuestion.images ? "text-2xl" : "text-3xl"} text-zinc-800`}>
-                        {preventWidows(option)}
+                      <span className={`${currentQuestion.images ? "text-base" : "text-lg"} text-zinc-800`}>
+                        {option}
                       </span>
                     </div>
                   </div>
@@ -176,21 +177,21 @@ export default function QuizScreen({
 
         </div>
 
-        <div className="absolute inset-x-0 -bottom-28 bg-no-repeat bg-center bg-contain opacity-60 pointer-events-none z-0">
+        <div className="absolute inset-x-0 -bottom-8 sm:-bottom-28 md:-bottom-32 opacity-50">
           <Image alt="Parada" src={`${stopData.logo}.svg`} width={1200} height={440} className="object-contain" />
         </div>
 
 
-        <div className="fixed bottom-24 left-0 right-0 flex justify-between items-center gap-10 p-16 z-50">
-          <Button variant="outline" onClick={onQuit} className=" rounded-full font-heading text-zinc-50 border-b-[3px] border-zinc-500 text-2xl bg-[#BF4513] p-6
+        <div className="fixed bottom-10 sm:bottom-20 md:bottom-24 left-0 right-0 flex justify-between items-center gap-6 px-4 sm:px-10 md:px-16 z-50">
+          <Button variant="outline" onClick={onQuit} className=" rounded-full font-heading text-zinc-50 border-b-[3px] border-zinc-500 text-lg bg-[#BF4513] p-2
           ">
-            <img src="/close.svg" alt="Desitir" className="w-6" />
+            <img src="/close.svg" alt="Desitir" className="w-4" />
             DESISTIR
           </Button>
           {selectedOption !== null ? (
-            <button onClick={handleNext}><Image src="/skip_active.svg" alt="active button" width={60} height={60} /></button>
+            <button onClick={handleNext}><Image src="/skip_active.svg" alt="active button" width={48} height={48} /></button>
           ) : (
-            <Image src="skip.svg" alt="button" width={60} height={60} />
+            <Image src="skip.svg" alt="button" width={48} height={48} />
           )}
         </div>
       </div>

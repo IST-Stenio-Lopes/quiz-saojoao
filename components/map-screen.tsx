@@ -12,11 +12,30 @@ interface MapScreenProps {
 
 export default function MapScreen({ unlockedStops, onSelectStop }: MapScreenProps) {
   const stops = [
-    { name: "Parada 1", position: "top-[20%] left-1/3" },
-    { name: "Parada 2", position: "bottom-[15%] right-1/2" },
-    { name: "Parada 3", position: "bottom-1/3 left-1/2" },
-    { name: "Parada 4", position: "top-[33%] right-[10%]" },
+    {
+      name: "Parada 1",
+      position:
+        "top-[15%] left-[42%] sm:top-[20%] sm:left-[30%] md:top-[22%] md:left-[28%]",
+    },
+    {
+      name: "Parada 2",
+      position:
+        "bottom-[15%] left-[32%] sm:bottom-[15%] sm:left-[38%] md:bottom-[18%] md:left-[35%]",
+    },
+    {
+      name: "Parada 3",
+      position:
+        "bottom-[30%] left-[58%] sm:bottom-1/3 sm:left-[60%] md:bottom-[35%] md:left-[62%]",
+    },
+    {
+      name: "Parada 4",
+      position:
+        "top-[35%] left-[70%] sm:top-[33%] sm:left-[65%] md:top-[35%] md:left-[68%]",
+    },
   ]
+
+
+
 
   return (
     <motion.div
@@ -38,19 +57,22 @@ export default function MapScreen({ unlockedStops, onSelectStop }: MapScreenProp
                 disabled={!isUnlocked}
                 className={`w-80 flex flex-col items-center justify-center p-0 bg-transparent hover:bg-transparent border-0`}
               >
-                <Image
-                  src={
-                    isCompleted
-                      ? `/parada${index + 1}_completed.svg`
-                      : isUnlocked
-                        ? `/parada${index + 1}.svg`
-                        : `/parada${index + 1}_locked.svg`
-                  }
-                  alt={stop.name}
-                  width={300}
-                  height={300}
-                  className={isUnlocked && !isCompleted ? "animate-pulseScale" : ""}
-                />
+
+                <div className="relative w-[120px] sm:w-[150px] md:w-[200px] lg:w-[240px] aspect-square">
+                  <Image
+                    src={
+                      isCompleted
+                        ? `/parada${index + 1}_completed.svg`
+                        : isUnlocked
+                          ? `/parada${index + 1}.svg`
+                          : `/parada${index + 1}_locked.svg`
+                    }
+                    alt={stop.name}
+
+                    fill
+                    className={`object-contain ${isUnlocked && !isCompleted ? "animate-pulseScale" : ""}`}
+                  />
+                </div>
               </Button>
             </div>
           )

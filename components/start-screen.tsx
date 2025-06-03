@@ -13,35 +13,6 @@ interface StartScreenProps {
 export default function StartScreen({ onStart }: StartScreenProps) {
   const { enterFullscreen } = useFullscreen()
 
-
-  useEffect(() => {
-    const attemptFullscreen = async () => {
-      try {
-
-        const userInteractionHandler = () => {
-          enterFullscreen()
-          document.removeEventListener("click", userInteractionHandler)
-          document.removeEventListener("keydown", userInteractionHandler)
-          document.removeEventListener("touchstart", userInteractionHandler)
-        }
-
-        document.addEventListener("click", userInteractionHandler)
-        document.addEventListener("keydown", userInteractionHandler)
-        document.addEventListener("touchstart", userInteractionHandler)
-
-        return () => {
-          document.removeEventListener("click", userInteractionHandler)
-          document.removeEventListener("keydown", userInteractionHandler)
-          document.removeEventListener("touchstart", userInteractionHandler)
-        }
-      } catch (error) {
-        console.error("Erro ao tentar entrar em fullscreen:", error)
-      }
-    }
-
-    attemptFullscreen()
-  }, [enterFullscreen])
-
   const handleStartClick = () => {
     enterFullscreen()
     onStart()
@@ -83,7 +54,7 @@ export default function StartScreen({ onStart }: StartScreenProps) {
                 ease: "easeInOut",
               },
             }}
-            className="absolute top-20 right-36 z-10"
+            className="absolute top-10 right-4 md:top-20 md:right-36 z-10 w-28 md:w-72"
           >
             <Image
               src="/moon.svg"
