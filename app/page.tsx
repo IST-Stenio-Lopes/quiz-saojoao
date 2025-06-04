@@ -22,15 +22,43 @@ export default function Home() {
   usePreventContextMenu()
 
   useEffect(() => {
-    audioRef.current = new Audio("/sound/background-music.mp3")
-    audioRef.current.loop = true
-    audioRef.current.volume = 1
+    const audio = new Audio("/sound/background-music.mp3")
+    audio.loop = true
+    audio.volume = 0.5
+
+    audioRef.current = audio
+
+    let audioStarted = false
+
+
+    const startAudio = async () => {
+      if (audioStarted) return
+
+      try {
+        await audio.play()
+        audioStarted = true
+        document.removeEventListener('click', startAudio)
+        document.removeEventListener('touchstart', startAudio)
+        document.removeEventListener('keydown', startAudio)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+
+    startAudio()
+
+
+    document.addEventListener('click', startAudio)
+    document.addEventListener('touchstart', startAudio)
+    document.addEventListener('keydown', startAudio)
 
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current = null
-      }
+      audio.pause()
+      audioRef.current = null
+      document.removeEventListener('click', startAudio)
+      document.removeEventListener('touchstart', startAudio)
+      document.removeEventListener('keydown', startAudio)
     }
   }, [])
 
@@ -38,9 +66,10 @@ export default function Home() {
   const handleStart = () => {
     setGameState("map")
     if (audioRef.current) {
-      audioRef.current.play().catch((err) => {
-        console.warn("Não foi possível tocar o áudio:", err)
-      })
+      audioRef.current.volume = 1
+      audioRef.current
+        .play()
+        .catch((err) => console.warn("Não foi possível tocar o áudio:", err))
     }
   }
 
@@ -72,6 +101,10 @@ export default function Home() {
     setCorrectAnswers(0)
     setTotalAnswered(0)
     setGameState("start")
+
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5
+    }
   }
 
   const handleCuriosity = () => {
@@ -88,6 +121,9 @@ export default function Home() {
     setCorrectAnswers(0)
     setTotalAnswered(0)
     setGameState("start")
+    if (audioRef.current) {
+      audioRef.current.volume = 0.5
+    }
   }
 
   const handleTryAgain = () => {
