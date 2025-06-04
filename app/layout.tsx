@@ -16,8 +16,8 @@ const fontHeading = Titan_One({
 
 
 export const metadata: Metadata = {
-  title: "Quiz Interativo",
-  description: "Um quiz interativo com múltiplas paradas e perguntas",
+  title: "Quiz Elba me Leva - Museu",
+  description: "Um quiz sobre Elba Ramalho, interativo com múltiplas paradas e perguntas!",
 }
 
 export default function RootLayout({
